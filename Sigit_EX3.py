@@ -17,6 +17,30 @@ def check_list_win(row):
     return False
 
 
+# the function gets game board and checking for cross win
+def check_winner_crosses(game):
+    list_of_main_cross = []
+    list_of_secondary_cross = []
+    # checking main and secondary crosses
+    for index in range(len(game)):
+        # main cross
+        list_of_main_cross.append(game[index][index])
+        # secondary cross
+        list_of_secondary_cross.append((game[len(game) - index - 1][index]))
+    return check_list_win(list_of_main_cross) or check_list_win(list_of_secondary_cross)
+
+
+# the function gets game board and checking for column win
+def check_winner_col(game):
+    # checking columns
+    for index in range(len(game)):
+        list_to_check = []
+        for row in game:
+            list_to_check.append(row[index])
+        if check_list_win(list_to_check):
+            return True
+
+
 # the function gets game board and checking for row win
 def check_winner_row(game):
     # checking rows
@@ -29,12 +53,11 @@ def check_winner_row(game):
 def check_winner(game):
     # checking rows
     if not check_winner_row(game):
-        pass
         # checking columns
-        # if not check_winner_col(game):
-        # checking crosses
-        # if not check_winner_crosses(game):
-        # print("Its A Tie!!!")
+        if not check_winner_col(game):
+            # checking crosses
+            if not check_winner_crosses(game):
+                print("Its A Tie!!!")
 
 
 # main function that call the functions above
