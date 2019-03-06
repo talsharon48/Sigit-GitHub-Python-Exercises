@@ -17,11 +17,33 @@ def check_list_win(row):
     return False
 
 
+# the function gets game board and checking for row win
+def check_winner_row(game):
+    # checking rows
+    for row in game:
+        if check_list_win(row):
+            return True
+
+
+# function that gets the game board and sending it to each win option functions
+def check_winner(game):
+    # checking rows
+    if not check_winner_row(game):
+        pass
+        # checking columns
+        # if not check_winner_col(game):
+        # checking crosses
+        # if not check_winner_crosses(game):
+        # print("Its A Tie!!!")
+
+
 # main function that call the functions above
 def main():
     game = [[1, 2, 0],
             [2, 1, 0],
             [2, 1, 1]]
+    check_winner(game)
+
 
 if __name__ == '__main__':
     main()
